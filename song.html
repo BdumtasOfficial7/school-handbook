@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Perpustakaan Lirik Lagu</title>
+
+<style>
+body {
+    font-family: Arial, sans-serif;
+    background: #f4f4f4;
+    margin: 0;
+    padding: 15px;
+}
+
+h1 {
+    text-align: center;
+    color: #333;
+}
+
+input {
+    width: 100%;
+    padding: 12px;
+    font-size: 16px;
+    margin-bottom: 15px;
+    border-radius: 8px;
+    border: 1px solid #ccc;
+}
+
+.song {
+    background: white;
+    padding: 15px;
+    border-radius: 10px;
+    margin-bottom: 15px;
+}
+
+.song h2 {
+    margin: 0 0 10px;
+    font-size: 18px;
+}
+
+audio {
+    width: 100%;
+    margin-top: 10px;
+}
+
+.lyrics {
+    white-space: pre-wrap;
+    font-size: 14px;
+    margin-top: 10px;
+    color: #444;
+}
+</style>
+</head>
+
+<body>
+
+<h1>🎵 Buku Lagu</h1>
+
+<input type="text" id="search" placeholder="Cari judul lagu..." onkeyup="searchSong()">
+
+<div id="songList"></div>
+
+<script>
+const songs = [
+    {
+        title: "Lagu Kasih",
+        audio: "lagu1.mp3",
+        lyrics: `
+            Kasih itu sabar
+            Kasih itu murah hati
+            Ia tidak cemburu
+            Ia tidak memegahkan diri`
+    },
+    {
+        title: "Lagu Pengharapan",
+        audio: "lagu2.mp3",
+        lyrics: `
+            Di saat ku lemah
+            Kau kuatkan aku
+            Pengharapanku hanya pada-Mu`
+    }
+];
+
+function displaySongs(data) {
+    const list = document.getElementById("songList");
+    list.innerHTML = "";
+
+    data.forEach(song => {
+        list.innerHTML += `
+        <div class="song">
+            <h2>${song.title}</h2>
+            <audio controls>
+                <source src="${song.audio}" type="audio/mpeg">
+                Browser Anda tidak mendukung audio.
+            </audio>
+            <div class="lyrics">${song.lyrics}</div>
+        </div>
+        `;
+    });
+}
+
+function searchSong() {
+    const keyword = document.getElementById("search").value.toLowerCase();
+    const filtered = songs.filter(song =>
+        song.title.toLowerCase().includes(keyword)
+    );
+    displaySongs(filtered);
+}
+
+// Tampilkan semua lagu saat pertama dibuka
+displaySongs(songs);
+</script>
+
+</body>
+</html>

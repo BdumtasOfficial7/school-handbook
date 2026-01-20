@@ -1,0 +1,301 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <title>School Handbook</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <!-- GOOGLE FONT -->
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;800&display=swap" rel="stylesheet">
+
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: 'Poppins', sans-serif;
+    }
+
+    body {
+      background: linear-gradient(180deg, #e3f2fd, #ffffff);
+      color: #333;
+    }
+
+    header {
+      background: #1976d2;
+      color: white;
+      text-align: center;
+      padding: 25px;
+    }
+
+    header img {
+      width: 100px;
+      margin-bottom: 10px;
+    }
+
+    header h1 {
+      font-size: 28px;
+      font-weight: 800;
+    }
+
+    nav {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      background: #1565c0;
+    }
+
+    nav button {
+      background: none;
+      border: none;
+      color: white;
+      padding: 12px 16px;
+      cursor: pointer;
+      font-weight: 600;
+    }
+
+    nav button:hover {
+      background: #0d47a1;
+    }
+
+    section {
+      display: none;
+      padding: 25px;
+      animation: fade 0.4s;
+    }
+
+    section.active {
+      display: block;
+    }
+
+    @keyframes fade {
+      from { opacity: 0; }
+      to { opacity: 1; }
+    }
+
+    h2 {
+      color: #1976d2;
+      margin-bottom: 15px;
+    }
+
+    .card {
+      background: white;
+      padding: 20px;
+      border-radius: 12px;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+      margin-bottom: 20px;
+    }
+
+    ul li {
+      margin-left: 20px;
+      margin-bottom: 8px;
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-top: 10px;
+    }
+
+    table, th, td {
+      border: 1px solid #ccc;
+    }
+
+    th, td {
+      padding: 10px;
+      text-align: center;
+    }
+
+    th {
+      background: #bbdefb;
+    }
+
+    video, iframe {
+      width: 100%;
+      border-radius: 12px;
+    }
+
+    footer {
+      text-align: center;
+      padding: 15px;
+      background: #1976d2;
+      color: white;
+      margin-top: 30px;
+    }
+  </style>
+</head>
+<body>
+
+<header>
+  <img src="Logo.png" alt="Logo Sekolah">
+  <h1>SCHOOL HANDBOOK</h1>
+  <p><b>SD - SMP ADVENT WATUTUMOU</b></p>
+  <p>Informasi Resmi Sekolah</p>
+</header>
+
+<nav>
+  <button onclick="showSection('home')">🏫 Beranda</button>
+  <button onclick="showSection('info')">📘 Visi & Misi</button>
+  <button onclick="showSection('rules')">📜 Tata Tertib</button>
+  <button onclick="showSection('feg')">📜 Family Educare Group</button>
+  <button onclick="showSection('jadwal-piket')">📅 Jadwal Piket</button>
+  <button onclick="showSection('jadwal-pelajaran')">📅 Jadwal Pelajaran</button>
+  <button onclick="showSection('lagu')">🎵 Lagu</button>
+  <!-- <button onclick="showSection('media')">🎥 Media</button> -->
+</nav>
+
+<!-- BERANDA -->
+<section id="home" class="active">
+  <div class="card">
+    <h2>Selamat Datang 👋</h2>
+    <p>
+      Website ini adalah <b>Buku Panduan Digital Sekolah</b>.
+      Semua siswa dan guru dapat mengakses informasi penting
+      kapan saja dan di mana saja.
+    </p>
+  </div>
+</section>
+
+<!-- INFO SEKOLAH -->
+<section id="info">
+  <div class="card">
+    <h2>Visi & Misi Pendidikan Advent</h2>
+    <ul>
+      <li><b>Vision:</b><br><br>
+        Adventist Education set standards<br>
+        to having Christlike character,<br>
+        excelling in science and technology,<br>
+        being creative, productive and self-reliant.
+        <br><br>
+        <b>Visi:</b><br><br>
+        Pendidikan Advent menetapkan standard<br>
+        untuk berkarakter seperti Yesus,<br>
+        berprestasi dan terampil,<br>
+        dalam ilmu pengetahuan dan teknologi<br>
+        serta kreatif, produktif dan mandiri.</li><br>
+      <li><b>Mision:</b><br><br>
+        The mission of Adventist Education is<br>
+        to embody a godly a serving Adventist Education,<br>
+        to develop students capability of becoming competent<br>
+        in science, technology and arts,<br>
+        to inspire the students to become<br>
+        creative, productive and self-reliant.
+        <br><br>
+        <b>Misi:</b><br><br>
+        Misi Pendidikan Advent yaitu untuk mewujudkan<br>
+        Pendidikan Advent yang beriman dan suka melayani,<br>
+        mengembangkan kemampuan murid agar berprestasi dalam<br>
+        ilmu pengetahuan dan teknologi,<br>
+        serta menginspirasi mereka agar<br>
+        kreatif, produktif dan mandiri.</li>
+    </ul>
+  </div>
+</section>
+
+<!-- TATA TERTIB -->
+<section id="rules">
+  <div class="card">
+    <h2>Peraturan & Tata Tertib</h2>
+    <ul>
+      <li>Tata tertib di sekolah ini dimaksudkan sebagai rambu-rambu bagi siswa dalam bersikap, berkata-kata, bertindak dan melakukan kegiatan sehari-hari di sekolah dalam rangka menciptakan iklim dan kultur sekolah yang dapat menunjang kegiatan pembelajaran yang efektif.</li>
+      <li>Tata tertib di sekolah ini dibuat berdasarkan ketaqwaan, sopan santun dalam pergaulan, kedisiplinan, ketertiban, kebersihan, kesehatan, kerapihan, keamanan dan nilai-nilai yang mendukung kegiatan belajar yang efektif.</li>
+      <li>Setiap siswa wajib melaksanakan yang tercantum dalam tata tertib ini secara konsekuen dan penuh kesadaran.</li>
+    </ul>
+
+    <p>📄 Unduh Tata Tertib Lengkap:</p>
+    <a href="peraturan-sekolah.pdf" target="_blank">Download PDF</a>
+  </div>
+</section>
+
+<section id="feg">
+  <div class="card">
+    <h2>Family Educare Group</h2>
+    <ul>
+      <li><b>Pelaksanaan:</b>Senin, Rabu, Jumat | <b>Jam:</b> 07.50 - 08.20</li>
+      <li>Setiap siswa wajib bergabung dengan kelompok masing-masing setiap kegiatan ini.</li>
+      <li>Setiap kegiatan akan diambil absen.</li>
+      <li>Pengambilan absen akan dilakukan oleh officer kelompok masing-masing.</li>
+    </ul>
+
+    <p>📄 Unduh Kelompok FEG:</p>
+    <a href="feg-watutumou.pdf" target="_blank">Download PDF</a>
+  </div>
+</section>
+
+<!-- JADWAL -->
+<section id="jadwal-pelajaran">
+  <div class="card">
+    <h2>Jadwal Pelajaran SMP</h2>
+    <p>📄 Unduh Jadwal Pelajaran SMP:</p>
+    <a href="jadwal-pelajaran-smp-watutumou.pdf" target="_blank">Download PDF</a>
+  </div>
+</section>
+
+<section id="jadwal-piket">
+  <div class="card">
+    <h2>Jadwal Piket Guru</h2>
+    <ul>
+      <li>
+        <b>Senin</b><br>
+        - Mem Jane<br>
+        - Mem Joun<br>
+        - Sir Harold<br><br>
+        <b>Selasa</b><br>
+        - Sir Bruce<br>
+        - Mem Jenny<br>
+        - Mem Tracy<br><br>
+        <b>Rabu</b><br>
+        - Mem Merry<br>
+        - Pdt Luas<br>
+        - Mem Santhy<br><br>
+        <b>Kamis</b><br>
+        - Mem Junita<br>
+        - Mem Yunike<br>
+        - Mem Leyla<br><br>
+        <b>Jumat</b><br>
+        - Mem Afmitha<br>
+        - Sir Ken<br>
+        - Mem Beatrix<br><br></li>
+
+    <h2>Jadwal Piket Siswa</h2>
+      <li>
+        <b>Senin  :</b>Kelas 9<br><br>
+        <b>Selasa :</b>Kelas 8<br><br>
+        <b>Rabu   :</b>Kelas 7<br><br>
+        <b>Kamis  :</b>Kelas 6<br><br>
+        <b>Jumat  :</b>Kelas 5</li>
+    </ul>
+  </div>
+</section>
+
+<!-- LAGU -->
+<section id="lagu">
+  <div class="card">
+    <h2>Lagu Sekolah</h2>
+    <p>Buka <a href="song.html">Buku Lagu</a></p>
+  </div>
+</section>
+
+<!-- MEDIA -->
+<!-- <section id="media">
+  <div class="card">
+    <h2>Video Profil Sekolah</h2>
+    <iframe src="https://www.youtube.com/embed/dQw4w9WgXcQ" allowfullscreen></iframe>
+  </div>
+</section> -->
+
+<footer>
+  © 2026 School Handbook Digital
+</footer>
+
+<script>
+  function showSection(id) {
+    document.querySelectorAll('section').forEach(sec => {
+      sec.classList.remove('active');
+    });
+    document.getElementById(id).classList.add('active');
+  }
+</script>
+
+</body>
+</html>

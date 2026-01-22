@@ -122,6 +122,17 @@
       color: white;
       margin-top: 30px;
     }
+
+    #engday img {
+      width: 50%;
+      border-radius: 50%;
+      margin-left: 40%;
+    }
+    #feg img {
+      width: 50%;
+      border-radius: 20px;
+      margin-bottom: 10px;
+    }
   </style>
 </head>
 <body>
@@ -139,8 +150,9 @@
   <button onclick="showSection('rules')">📜 Tata Tertib</button>
   <button onclick="showSection('feg')">📜 Family Educare Group</button>
   <button onclick="showSection('jadwal-piket')">📅 Jadwal Piket</button>
-  <button onclick="showSection('jadwal-pelajaran')">📅 Jadwal Pelajaran</button>
+  <button onclick="showSection('jadwal-lainnya')">📅 Jadwal Lainnya</button>
   <button onclick="showSection('lagu')">🎵 Lagu</button>
+  <button onclick="showSection('engday')">📜 English Day</button>
   <!-- <button onclick="showSection('media')">🎥 Media</button> -->
 </nav>
 
@@ -209,6 +221,12 @@
 
 <section id="feg">
   <div class="card">
+    <h2>PIC</h2>
+    <img src="img-renaldo.jpg" alt="">
+    <p><b>Nama:</b>Renaldo Luas, S.Fil<br>
+    <p><b>Status:</b>Chaplain</p>
+  </div>
+  <div class="card">
     <h2>Family Educare Group</h2>
     <ul>
       <li><b>Pelaksanaan:</b>Senin, Rabu, Jumat | <b>Jam:</b> 07.50 - 08.20</li>
@@ -223,11 +241,34 @@
 </section>
 
 <!-- JADWAL -->
-<section id="jadwal-pelajaran">
+<section id="jadwal-lainnya">
   <div class="card">
     <h2>Jadwal Pelajaran SMP</h2>
     <p>📄 Unduh Jadwal Pelajaran SMP:</p>
     <a href="jadwal-pelajaran-smp-watutumou.pdf" target="_blank">Download PDF</a>
+  </div>
+  <div class="card">
+    <h2>Seragam Siswa SD - SMP</h2>
+    <ul>
+      <li><b>Senin</b><br>
+      - Kemeja putih<br>
+      - Celana/Rok merah/biru<br>
+      - Topi<br>
+      - Dasi</li>
+      <li><b>Selasa</b><br>
+      - Seragam kotak-kotak</li>
+      <li><b>Rabu</b><br>
+      - Kemeja putih<br>
+      - Celana/rok hitam</li>
+      <li><b>Kamis</b><br>
+      - Kemeja batik<br>
+      - Celana/rok merah/biru</li>
+      <li><b>Jumat</b><br><b>Minggu 1 & 3:</b>Pathfinder<br>
+      <b>Minggu 2 & 4:</b>Olahraga</li>
+      <br>
+    </ul>
+    <p>📄 Unduh Gambar Seragam Sekolah:</p>
+    <a href="" target="_blank">Download PDF</a>
   </div>
 </section>
 
@@ -273,6 +314,26 @@
   <div class="card">
     <h2>Lagu Sekolah</h2>
     <p>Buka <a href="song.html">Buku Lagu</a></p>
+  </div>
+</section>
+
+<section id="engday">
+  <div class="card">
+    <h2>PIC</h2>
+    <img src="img-bruce.jpg" alt="">
+    <p><b>Nama:</b>Bruce Simbar, S.Pd<br>
+    <p><b>Status:</b>Guru Bahasa Inggris</p>
+  </div>
+  <div class="card">
+    <h2>English Day</h2>
+    <ul>
+      <li><b>Pelaksanaan:</b>Selasa & Kamis | <b>Jam:</b>Selama berada di lingkungan sekolah</li>
+      <li>Setiap siswa wajib bercakap-cakap menggunakan <b>Bahasa Inggris</b> selama berada di lingkungan sekolah.</li>
+      <li>Melalui <b>School Handbook</b> ini sekolah menyiapkan panduan untuk membantu siswa bercakap-cakap dalam bahasa inggris.</li>
+      <li>Setiap percakapan yang terjadi akan mendapat penilaian oleh guru yang bersangkutan.</li>
+    </ul>
+    <p>Buku Panduan English Day<br>
+      <a href="panduan-english-day.pdf">Download PDF</a></p>
   </div>
 </section>
 

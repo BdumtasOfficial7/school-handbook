@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>English Conversation Game</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<h1>Let's Talk in English!</h1>
+
+<div id="start-area">
+  <label for="childName">Enter your name:</label><br>
+  <input type="text" id="childName" placeholder="Your name"><br>
+  <label for="topic">Choose a topic:</label><br>
+  <select id="topic">
+    <option value="">-- Select Topic --</option>
+    <option value="politeness">Politeness</option>
+    <option value="school">School</option>
+    <option value="science">Science Class</option>
+    <option value="colors">Colors</option>
+  </select><br>
+  <button onclick="startGame()">Start Game</button>
+</div>
+
+<div id="game-area" style="display:none;">
+  <div class="bot-face" id="bot-face">😊</div>
+  <h2 id="question"></h2>
+  <div id="translation"></div>
+  <div class="choices" id="choices"></div>
+  <input type="text" id="textAnswer" placeholder="Type or Speak your answer..." onkeypress="handleKey(event)">
+  <div>
+    <button id="speakButton" onclick="startListening()">Tap & Speak</button>
+    <button onclick="submitAnswer()">Submit</button>
+  </div>
+</div>
+
+<div id="score-area" style="display:none;">
+  <h2>Congratulations!</h2>
+  <p id="score-text"></p>
+  <button onclick="sendWhatsApp()">Send to WhatsApp</button>
+</div>
+
+<audio id="correctSound" src="https://cdn.pixabay.com/download/audio/2022/03/15/audio_c57bfa7127.mp3?filename=success-1-6297.mp3"></audio>
+<audio id="wrongSound" src="https://cdn.pixabay.com/download/audio/2022/02/22/audio_ec8c1e0e08.mp3?filename=error-2-95785.mp3"></audio>
+  <script src="script.js"></script>
+</body>
+</html>

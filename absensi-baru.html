@@ -1,0 +1,518 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Aplikasi Absensi Kelas</title>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf-autotable/3.8.2/jspdf.plugin.autotable.min.js"></script>
+
+<style>
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:'Poppins',sans-serif;
+}
+
+body{
+    background:#f3f6fb;
+    padding:20px;
+}
+
+.container{
+    max-width:1300px;
+    margin:auto;
+}
+
+.header{
+    background:linear-gradient(135deg,#2563eb,#1e40af);
+    color:white;
+    padding:30px;
+    border-radius:20px;
+    margin-bottom:20px;
+    box-shadow:0 10px 25px rgba(0,0,0,0.1);
+}
+
+.header h1{
+    font-size:32px;
+}
+
+.card{
+    background:white;
+    padding:25px;
+    border-radius:20px;
+    box-shadow:0 5px 20px rgba(0,0,0,0.08);
+    margin-bottom:20px;
+}
+
+.form-grid{
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
+    gap:15px;
+}
+
+input, select, textarea{
+    width:100%;
+    padding:12px;
+    border:1px solid #ccc;
+    border-radius:10px;
+    font-size:15px;
+}
+
+textarea{
+    margin-top:15px;
+}
+
+.button-group{
+    margin-top:20px;
+    display:flex;
+    gap:10px;
+    flex-wrap:wrap;
+}
+
+button{
+    border:none;
+    padding:12px 20px;
+    border-radius:10px;
+    cursor:pointer;
+    color:white;
+    font-weight:600;
+}
+
+.save{
+    background:#16a34a;
+}
+
+.pdf{
+    background:#dc2626;
+}
+
+.clear{
+    background:#ea580c;
+}
+
+.delete{
+    background:#dc2626;
+    padding:8px 15px;
+}
+
+.stats{
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(180px,1fr));
+    gap:15px;
+}
+
+.stat{
+    color:white;
+    padding:20px;
+    border-radius:15px;
+    text-align:center;
+}
+
+.hadir{
+    background:#16a34a;
+}
+
+.izin{
+    background:#f59e0b;
+}
+
+.sakit{
+    background:#0284c7;
+}
+
+.alpha{
+    background:#dc2626;
+}
+
+.filter{
+    display:flex;
+    gap:10px;
+    margin-bottom:15px;
+    flex-wrap:wrap;
+}
+
+table{
+    width:100%;
+    border-collapse:collapse;
+    overflow:auto;
+}
+
+th{
+    background:#2563eb;
+    color:white;
+}
+
+th,td{
+    padding:12px;
+    border:1px solid #ddd;
+    text-align:center;
+}
+
+tr:nth-child(even){
+    background:#f7f7f7;
+}
+
+@media(max-width:768px){
+    table{
+        font-size:12px;
+    }
+}
+
+</style>
+</head>
+
+<body>
+
+<div class="container">
+
+<div class="header">
+    <h1>Aplikasi Absensi Kelas</h1>
+    <p>Sistem Pendataan Kehadiran Siswa</p>
+</div>
+
+<div class="card">
+
+<h2>Input Kehadiran</h2>
+<br>
+
+<div class="form-grid">
+    <input type="date" id="tanggal">
+
+    <input type="text"
+           id="nis"
+           placeholder="NIS">
+
+    <input type="text"
+           id="nama"
+           placeholder="Nama Siswa">
+
+    <input type="text"
+           id="kelas"
+           placeholder="Kelas">
+
+    <input type="text"
+           id="guru"
+           placeholder="Guru Pengajar">
+
+    <select id="status">
+        <option>Hadir</option>
+        <option>Izin</option>
+        <option>Sakit</option>
+        <option>Alpha</option>
+    </select>
+</div>
+
+<textarea id="keterangan"
+rows="3"
+placeholder="Keterangan"></textarea>
+
+<div class="button-group">
+    <button class="save" onclick="tambahData()">
+        Simpan Data
+    </button>
+
+    <button class="pdf" onclick="exportPDF()">
+        Export PDF
+    </button>
+
+    <button class="clear" onclick="hapusSemua()">
+        Hapus Semua
+    </button>
+</div>
+
+</div>
+
+<div class="card">
+
+<h2>Statistik Kehadiran</h2>
+<br>
+
+<div class="stats">
+
+<div class="stat hadir">
+<h1 id="jHadir">0</h1>
+Hadir
+</div>
+
+<div class="stat izin">
+<h1 id="jIzin">0</h1>
+Izin
+</div>
+
+<div class="stat sakit">
+<h1 id="jSakit">0</h1>
+Sakit
+</div>
+
+<div class="stat alpha">
+<h1 id="jAlpha">0</h1>
+Alpha
+</div>
+
+</div>
+
+</div>
+
+<div class="card">
+
+<div class="filter">
+<input type="text"
+id="cari"
+placeholder="Cari nama siswa..."
+onkeyup="tampilkanData()">
+
+<select id="filterStatus"
+onchange="tampilkanData()">
+    <option value="">Semua Status</option>
+    <option>Hadir</option>
+    <option>Izin</option>
+    <option>Sakit</option>
+    <option>Alpha</option>
+</select>
+</div>
+
+<div style="overflow-x:auto">
+
+<table>
+
+<thead>
+<tr>
+    <th>No</th>
+    <th>Tanggal</th>
+    <th>NIS</th>
+    <th>Nama</th>
+    <th>Kelas</th>
+    <th>Status</th>
+    <th>Guru</th>
+    <th>Keterangan</th>
+    <th>Aksi</th>
+</tr>
+</thead>
+
+<tbody id="tbody">
+</tbody>
+
+</table>
+
+</div>
+
+</div>
+
+</div>
+
+<script>
+
+let data =
+JSON.parse(localStorage.getItem("absensi")) || [];
+
+document.getElementById("tanggal").value =
+new Date().toISOString().split("T")[0];
+
+function simpan(){
+    localStorage.setItem(
+        "absensi",
+        JSON.stringify(data)
+    );
+}
+
+function tambahData(){
+
+    let tanggal =
+    document.getElementById("tanggal").value;
+
+    let nis =
+    document.getElementById("nis").value;
+
+    let nama =
+    document.getElementById("nama").value;
+
+    let kelas =
+    document.getElementById("kelas").value;
+
+    let guru =
+    document.getElementById("guru").value;
+
+    let status =
+    document.getElementById("status").value;
+
+    let ket =
+    document.getElementById("keterangan").value;
+
+    if(nama === ""){
+        alert("Nama siswa wajib diisi.");
+        return;
+    }
+
+    data.push({
+        tanggal,
+        nis,
+        nama,
+        kelas,
+        guru,
+        status,
+        ket
+    });
+
+    simpan();
+    tampilkanData();
+
+    document.getElementById("nis").value="";
+    document.getElementById("nama").value="";
+    document.getElementById("kelas").value="";
+    document.getElementById("guru").value="";
+    document.getElementById("keterangan").value="";
+}
+
+function tampilkanData(){
+
+    let cari =
+    document.getElementById("cari")
+    .value.toLowerCase();
+
+    let filter =
+    document.getElementById("filterStatus")
+    .value;
+
+    let html="";
+
+    let no=1;
+
+    data.forEach((d,index)=>{
+
+        if(
+            d.nama.toLowerCase().includes(cari)
+            &&
+            (filter==="" || d.status===filter)
+        ){
+
+        html += `
+        <tr>
+            <td>${no++}</td>
+            <td>${d.tanggal}</td>
+            <td>${d.nis}</td>
+            <td>${d.nama}</td>
+            <td>${d.kelas}</td>
+            <td>${d.status}</td>
+            <td>${d.guru}</td>
+            <td>${d.ket}</td>
+            <td>
+            <button class="delete"
+            onclick="hapus(${index})">
+            Hapus
+            </button>
+            </td>
+        </tr>
+        `;
+        }
+    });
+
+    document.getElementById("tbody")
+    .innerHTML = html;
+
+    statistik();
+}
+
+function hapus(index){
+
+    if(confirm("Hapus data ini?")){
+        data.splice(index,1);
+        simpan();
+        tampilkanData();
+    }
+}
+
+function hapusSemua(){
+
+    if(confirm("Hapus semua data?")){
+        data=[];
+        simpan();
+        tampilkanData();
+    }
+}
+
+function statistik(){
+
+    let hadir=0;
+    let izin=0;
+    let sakit=0;
+    let alpha=0;
+
+    data.forEach(d=>{
+
+        if(d.status==="Hadir") hadir++;
+        if(d.status==="Izin") izin++;
+        if(d.status==="Sakit") sakit++;
+        if(d.status==="Alpha") alpha++;
+
+    });
+
+    document.getElementById("jHadir").innerHTML=hadir;
+    document.getElementById("jIzin").innerHTML=izin;
+    document.getElementById("jSakit").innerHTML=sakit;
+    document.getElementById("jAlpha").innerHTML=alpha;
+}
+
+function exportPDF(){
+
+    const { jsPDF } = window.jspdf;
+
+    const doc = new jsPDF();
+
+    doc.setFontSize(18);
+    doc.text("LAPORAN ABSENSI KELAS", 14, 15);
+
+    doc.setFontSize(10);
+    doc.text(
+        "Tanggal Cetak: " +
+        new Date().toLocaleDateString("id-ID"),
+        14,
+        22
+    );
+
+    let rows = [];
+
+    data.forEach((d,i)=>{
+
+        rows.push([
+            i+1,
+            d.tanggal,
+            d.nis,
+            d.nama,
+            d.kelas,
+            d.status,
+            d.guru
+        ]);
+
+    });
+
+    doc.autoTable({
+        startY:30,
+        head:[[
+            "No",
+            "Tanggal",
+            "NIS",
+            "Nama",
+            "Kelas",
+            "Status",
+            "Guru"
+        ]],
+        body:rows,
+        theme:"grid"
+    });
+
+    doc.save("Absensi-Kelas.pdf");
+}
+
+tampilkanData();
+
+</script>
+
+</body>
+</html>
